@@ -1,4 +1,4 @@
-package com.felipe.creditcardmanager.model;
+package com.felipe.bankcore.model;
 
 /**
  * Representa os possíveis status de uma compra no cartão de crédito.

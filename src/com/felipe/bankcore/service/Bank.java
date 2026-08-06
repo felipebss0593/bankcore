@@ -1,6 +1,6 @@
-package com.felipe.creditcardmanager.service;
+package com.felipe.bankcore.service;
 
-import com.felipe.creditcardmanager.model.Customer;
+import com.felipe.bankcore.model.Customer;
 import java.util.ArrayList;
 import java.util.List;
 

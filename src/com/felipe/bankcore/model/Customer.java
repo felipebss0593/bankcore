@@ -1,4 +1,4 @@
-package com.felipe.creditcardmanager.model;
+package com.felipe.bankcore.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
-package com.felipe.creditcardmanager;
-import com.felipe.creditcardmanager.model.Card;
-import com.felipe.creditcardmanager.model.Customer;
-import com.felipe.creditcardmanager.model.Purchase;
-import com.felipe.creditcardmanager.model.PurchaseValueComparator;
-import com.felipe.creditcardmanager.service.Bank;
+package com.felipe.bankcore;
+import com.felipe.bankcore.model.Card;
+import com.felipe.bankcore.model.Customer;
+import com.felipe.bankcore.model.Purchase;
+import com.felipe.bankcore.model.PurchaseValueComparator;
+import com.felipe.bankcore.service.Bank;
 
 import java.util.Collections;
 import java.util.Scanner;
