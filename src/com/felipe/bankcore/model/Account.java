@@ -18,12 +18,27 @@ public abstract class Account {
 
     public abstract double calcularRendimento();
 
+    /**
+     * cria um depósito
+     * @param amount é o valor do depósito.
+     * soma o valor do saldo com o valor do depósito.
+     * cria uma transação.
+     * é adicionado na lista de transações.
+     */
     public void deposit(double amount){
         balance += amount;
         Transaction transaction = new Transaction(amount, LocalDate.now(), TransactionType.DEPOSITO);
         transactionList.add(transaction);
     }
 
+    /**
+     * cria um saque.
+     * @param amount é o valor do saque.
+     * se o valor do saldo for maior que o saque, subtrai o valor do saldo com o valor do saque.
+     * cria uma transação.
+     * é adicionado na lista de transações.
+     * se caso o saldo for menor que o saque, a exception @param InsufficientBalanceException é acionada.
+     */
     public void withdraw(double amount){
         if( amount < balance){
             balance -= amount;
