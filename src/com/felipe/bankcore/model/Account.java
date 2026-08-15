@@ -1,10 +1,15 @@
 package com.felipe.bankcore.model;
 
 import com.felipe.bankcore.exception.InsufficientBalanceException;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * representa uma conta bancária.
+ * possui saldo, dono e uma lista de transações.
+ * possui métodos deposito, saque e calcular rendimento.
+ */
 
 public abstract class Account {
     private double balance;
@@ -27,6 +32,14 @@ public abstract class Account {
         }else {
             throw new InsufficientBalanceException("O valor do saque é maior do que o saldo!");
         }
+    }
+
+    /**
+     * Cria uma nova conta, vinculando o cliente dono no momento da criação.
+     * @param owner o cliente dono da conta.
+     */
+    public Account(Customer owner) {
+        this.owner = owner;
     }
 
     public double getBalance() {
