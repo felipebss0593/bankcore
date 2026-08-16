@@ -11,6 +11,7 @@ public class Transaction {
     private double value;
     private LocalDate date;
     private TransactionType type;
+    private String description;
 
     /**
      * Cria uma nova transação.
@@ -41,6 +42,14 @@ public class Transaction {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public TransactionType getType() {

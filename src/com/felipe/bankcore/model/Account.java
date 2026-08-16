@@ -25,10 +25,11 @@ public abstract class Account {
      * cria uma transação.
      * é adicionado na lista de transações.
      */
-    public void deposit(double amount){
+    public Transaction deposit(double amount){
         balance += amount;
         Transaction transaction = new Transaction(amount, LocalDate.now(), TransactionType.DEPOSITO);
         transactionList.add(transaction);
+        return transaction;
     }
 
     /**
@@ -39,14 +40,29 @@ public abstract class Account {
      * é adicionado na lista de transações.
      * se caso o saldo for menor que o saque, a exception @param InsufficientBalanceException é acionada.
      */
-    public void withdraw(double amount){
+    public Transaction withdraw(double amount){
         if( amount < balance){
             balance -= amount;
             Transaction transaction = new Transaction(amount, LocalDate.now(), TransactionType.SAQUE);
             transactionList.add(transaction);
+            return transaction;
         }else {
             throw new InsufficientBalanceException("O valor do saque é maior do que o saldo!");
         }
+    }
+
+    /**
+     * faz uma transferência de uma conta para a outra,
+     * reaproveitando os métodos Withdraw e deposit para entrada e saída.
+     * @param destinationAccount a conta que vai receber o depósito.
+     * @param amount o valor da transferência
+     */
+    public void transfer(Account destinationAccount, double amount) {
+        Transaction trasacaoSaida = this.withdraw(amount);
+        Transaction trasacaoEntrada = destinationAccount.deposit(amount);
+        trasacaoSaida.setDescription("Transferência enviada para " + destinationAccount.getOwner().getName());
+        trasacaoEntrada.setDescription("Transferência recebida de " + getOwner().getName());
+        System.out.println("Transferência no valor de: " + amount + " para o " + destinationAccount.getOwner().getName() + " Realizado com sucesso!");
     }
 
     /**
