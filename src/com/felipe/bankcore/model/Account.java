@@ -66,6 +66,16 @@ public abstract class Account {
     }
 
     /**
+     * Calcula o rendimento da conta e aplica ele diretamente no saldo, via deposit().
+     * adiciona uma descrição desse rendimento.
+     */
+    public void aplicarRendimento() {
+        double rendimento = calcularRendimento();
+        Transaction transacaoRendimento = deposit(rendimento);
+        transacaoRendimento.setDescription("Rendimento aplicado");
+    }
+
+    /**
      * Cria uma nova conta, vinculando o cliente dono no momento da criação.
      * @param owner o cliente dono da conta.
      */
