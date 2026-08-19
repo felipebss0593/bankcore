@@ -1,5 +1,7 @@
 package com.felipe.bankcore.model;
 
+import com.felipe.bankcore.exception.SavingsAccountAlreadyExistsException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,10 @@ import java.util.List;
 public class Customer {
     //contador compartilhado entre todos os clientes,usado pra gerar IDs únicos automaticamnete;
     private static int nextId = 1;
-
+    private CheckingAccount checkingAccount;
     private String name;
     private int id;
+    private SavingsAccount savingsAccount;
 
     //cliente pode ter múltiplos cartões;lista começa vazia e cresce conforme cartões são adicionados;
     private List<Card> cards = new ArrayList<>();
@@ -26,6 +29,7 @@ public class Customer {
      */
     public Customer(String name){
         this.name = name;
+        this.checkingAccount = new CheckingAccount(this);
 
         //pega o valor atual antes de incrementar, pra IDs começarem em 1;
         this.id = nextId;
@@ -39,6 +43,10 @@ public class Customer {
 
     public int getId() {
         return id;
+    }
+
+    public CheckingAccount getCheckingAccount() {
+        return checkingAccount;
     }
 
     /**
@@ -75,6 +83,20 @@ public class Customer {
             }
         }
         return null;
+    }
+
+    /**
+     * Cria uma conta poupança para o cliente.
+     * caso ela já tenha uma conta poupança, é lançada uma Exception personalizada.
+     * @return uma conta poupança.
+     */
+    public SavingsAccount abrirPoupanca(){
+        if(this.savingsAccount != null){
+             throw new SavingsAccountAlreadyExistsException("Não é possivel criar duas contas poupanças.");
+        } else{
+            this.savingsAccount = new SavingsAccount(this);
+            return savingsAccount;
+        }
     }
 
     @Override
